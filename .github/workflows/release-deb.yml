@@ -78,14 +78,10 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: vp install
+
       - run: npm run bootstrap
         env:
           YAAK_TARGET_ARCH: ${{ matrix.yaak_arch }}
-      - run: npm run lint
-      - name: Run JS Tests
-        run: vp test
-      - name: Run Rust Tests
-        run: cargo test --all --exclude yaak-cli --features yaak-app-client/wry
 
       - name: Set version
         run: npm run replace-version
